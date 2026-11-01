@@ -13,4 +13,5 @@ dist/
 node_modules/
 apps/web/node_modules/
 apps/web/dist/
+*.tsbuildinfo
 graphify-out/
