@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: guardbench
+      POSTGRES_USER: guardbench
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-guardbench-local}
+    volumes:
+      - guardbench-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U guardbench"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: .
+    environment:
+      GUARDBENCH_DATABASE_URL: postgresql+psycopg://guardbench:${POSTGRES_PASSWORD:-guardbench-local}@db:5432/guardbench
+      GUARDBENCH_API_KEY: ${GUARDBENCH_API_KEY:-}
+      GUARDBENCH_CORS_ORIGINS: http://localhost:3000
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+  web:
+    build: apps/web
+    depends_on:
+      - api
+    ports:
+      - "3000:80"
+
+volumes:
+  guardbench-data:
+

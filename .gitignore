@@ -1,0 +1,16 @@
+.DS_Store
+.env
+.venv/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.py[cod]
+*.db
+.coverage
+htmlcov/
+.guardbench/
+dist/
+node_modules/
+apps/web/node_modules/
+apps/web/dist/
+graphify-out/

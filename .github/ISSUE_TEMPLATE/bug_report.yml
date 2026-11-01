@@ -1,0 +1,36 @@
+name: Bug report
+description: Report reproducible incorrect or unexpected behavior.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve GuardBench. Do not include credentials or sensitive prompts.
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the expected and actual behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include a synthetic dataset/configuration and exact commands where possible.
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: GuardBench version
+      placeholder: 0.1.0-alpha
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Python version, installation method, and target adapter.
+

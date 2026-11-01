@@ -1,0 +1,15 @@
+dataset: datasets/synthetic-fintech.json
+target:
+  type: mock
+  version: "1"
+run:
+  concurrency: 4
+  timeout_seconds: 30
+  retries: 0
+quality_gates:
+  minimum_macro_f1: 0.70
+  maximum_false_block_rate: 0.10
+  maximum_missed_block_rate: 0.10
+  maximum_indeterminate_rate: 0.05
+output: .guardbench/latest.json
+
